@@ -33,63 +33,82 @@ const correctAnswers = {
 document.getElementById("quizForm").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent page refresh
 
-    // Calculate time spent
-    const endTime = Date.now();
-    const timeSpent = ((endTime - startTime) / 1000).toFixed(2);
+    try {
+        console.log("Form submission started...");
 
-    let studentName = document.getElementById("studentName").value.trim();
-    if (!studentName) {
-        alert("Please enter your name.");
-        return;
-    }
+        // Calculate time spent
+        const endTime = Date.now();
+        const timeSpent = ((endTime - startTime) / 1000).toFixed(2);
 
-    let answers = {};
-    let score = 0;
-    let totalQuestions = Object.keys(correctAnswers).length;
-
-    // Loop through questions
-    Object.keys(correctAnswers).forEach((key) => {
-        let selectedOption = document.querySelector(`input[name="${key}"]:checked`);
-        if (selectedOption) {
-            answers[key] = selectedOption.value;
-            if (selectedOption.value.toUpperCase() === correctAnswers[key].toUpperCase()) {
-                score++;
-            }
+        let studentName = document.getElementById("studentName").value.trim();
+        if (!studentName) {
+            alert("Please enter your name.");
+            return;
         }
-    });
 
-    let percentage = ((score / totalQuestions) * 100).toFixed(2);
-    let grade = percentage >= 80 ? "A" : percentage >= 70 ? "B" : percentage >= 60 ? "C" : percentage >= 50 ? "D" : "F";
-    let comment = grade === "A" ? "Excellent!" : grade === "B" ? "Good Job!" : grade === "C" ? "Fair Effort" : grade === "D" ? "Needs Improvement" : "Better luck next time!";
+        let answers = {};
+        let score = 0;
+        let totalQuestions = Object.keys(correctAnswers).length;
 
-    // Save to Firebase
-    const studentAnswers = {
-        name: studentName,
-        score: score,
-        percentage: percentage,
-        grade: grade,
-        comment: comment,
-        timeSpent: timeSpent,
-        answers: answers,
-        timestamp: firebase.database.ServerValue.TIMESTAMP
-    };
-
-    database.ref("quizResults").push(studentAnswers)
-        .then(() => {
-            alert("Quiz submitted successfully!");
-        })
-        .catch((error) => {
-            console.error("Error saving to database:", error);
+        // Loop through questions
+        Object.keys(correctAnswers).forEach((key) => {
+            let selectedOption = document.querySelector(`input[name="${key}"]:checked`);
+            if (selectedOption) {
+                answers[key] = selectedOption.value;
+                if (selectedOption.value.toUpperCase() === correctAnswers[key].toUpperCase()) {
+                    score++;
+                }
+            }
         });
 
-    // Display results to the student
+        let percentage = ((score / totalQuestions) * 100).toFixed(2);
+        let grade = percentage >= 80 ? "A" : percentage >= 70 ? "B" : percentage >= 60 ? "C" : percentage >= 50 ? "D" : "F";
+        let comment = grade === "A" ? "Excellent!" : grade === "B" ? "Good Job!" : grade === "C" ? "Fair Effort" : grade === "D" ? "Needs Improvement" : "Better luck next time!";
+
+        // Prepare result data
+        const studentAnswers = {
+            name: studentName,
+            score: score,
+            percentage: percentage,
+            grade: grade,
+            comment: comment,
+            timeSpent: timeSpent,
+            answers: answers,
+            timestamp: firebase.database.ServerValue.TIMESTAMP
+        };
+
+        // Debug: Save results in localStorage in case Firebase fails
+        localStorage.setItem("lastQuizResult", JSON.stringify(studentAnswers));
+
+        console.log("Attempting to save to Firebase...");
+
+        // Use a timeout to prevent quick refresh issues
+        setTimeout(() => {
+            database.ref("quizResults").push(studentAnswers)
+                .then(() => {
+                    console.log("Quiz submitted successfully!");
+                    displayResults(studentAnswers);
+                })
+                .catch((error) => {
+                    console.error("Error saving to database:", error);
+                    alert("Submission failed. Check network connection.");
+                });
+        }, 1000); // Delay Firebase submission by 1 second
+
+    } catch (error) {
+        console.error("Unexpected error:", error);
+    }
+});
+
+// Function to display quiz results
+function displayResults(data) {
     let resultHTML = `
         <h2>Quiz Results</h2>
-        <p><strong>Name:</strong> ${studentName}</p>
-        <p><strong>Score:</strong> ${score}/${totalQuestions} (${percentage}%)</p>
-        <p><strong>Grade:</strong> ${grade}</p>
-        <p><strong>Comment:</strong> ${comment}</p>
-        <p><strong>Time Spent:</strong> ${timeSpent} seconds</p>
+        <p><strong>Name:</strong> ${data.name}</p>
+        <p><strong>Score:</strong> ${data.score}/${Object.keys(correctAnswers).length} (${data.percentage}%)</p>
+        <p><strong>Grade:</strong> ${data.grade}</p>
+        <p><strong>Comment:</strong> ${data.comment}</p>
+        <p><strong>Time Spent:</strong> ${data.timeSpent} seconds</p>
         <h3>Correct Answers</h3>
         <table border="1">
             <tr><th>Question</th><th>Correct Answer</th><th>Your Answer</th></tr>
@@ -100,14 +119,11 @@ document.getElementById("quizForm").addEventListener("submit", function(event) {
             <tr>
                 <td>Question ${index + 1}</td>
                 <td>${correctAnswers[key]}</td>
-                <td>${answers[key] || "Not answered"}</td>
+                <td>${data.answers[key] || "Not answered"}</td>
             </tr>
         `;
     });
 
     resultHTML += "</table>";
     document.getElementById("result").innerHTML = resultHTML;
-
-    // Reset form
-    document.getElementById("quizForm").reset();
-});
+}

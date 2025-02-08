@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HISTOLOGY QUIZ</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script defer src="script.js"></script>
+    <style>
+        #quizResultsTable {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        #quizResultsTable th, #quizResultsTable td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 12px;
+            color: gray;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>HISTOLOGY QUIZ</h1>
+
+    <form id="quizForm">
+        <label for="studentName"><strong>Your Name:</strong></label>
+        <input type="text" id="studentName" required>
+
+  <h2>HISTOLOGY MCQS FOR PRACTICE SET 1</h2>
+    <div>LEARNING RESOURCES AND QUESTIONS SPONSORED BY GOVERNOR MAHELA</div>
+    <div id="countdown">Loading...</div
+                                    
+        <p>1. Which of the following is a primary type of tissue in the human body?</p>
+        <input type="radio" name="q1" value="a"> Epithelial<br>
+        <input type="radio" name="q1" value="b"> Muscular<br>
+        <input type="radio" name="q1" value="c"> Nervous<br>
+        <input type="radio" name="q1" value="d"> Connective<br>
+        <input type="radio" name="q1" value="e"> All of the above<br><br>
+
+        <p>2. What is the primary function of epithelial tissue?</p>
+        <input type="radio" name="q2" value="a"> Support and structure<br>
+        <input type="radio" name="q2" value="b"> Protection and absorption<br>
+        <input type="radio" name="q2" value="c"> Contraction<br>
+        <input type="radio" name="q2" value="d"> Signal transmission<br>
+        <input type="radio" name="q2" value="e"> Storage<br><br>
+
+        <p>3. A patient presents with a tumor characterized by abnormal growth of epithelial cells. Which type of cancer is most likely?</p>
+        <input type="radio" name="q3" value="a"> Sarcoma<br>
+        <input type="radio" name="q3" value="b"> Lymphoma<br>
+        <input type="radio" name="q3" value="c"> Carcinoma<br>
+        <input type="radio" name="q3" value="d"> Myeloma<br>
+        <input type="radio" name="q3" value="e"> Melanoma<br><br>
+
+        <p>4. Which organelle is known as the "powerhouse" of the cell?</p>
+        <input type="radio" name="q4" value="a"> Nucleus<br>
+        <input type="radio" name="q4" value="b"> Ribosome<br>
+        <input type="radio" name="q4" value="c"> Mitochondria<br>
+        <input type="radio" name="q4" value="d"> Golgi apparatus<br>
+        <input type="radio" name="q4" value="e"> Endoplasmic reticulum<br><br>
+
+        <p>5. The process of cellular respiration is crucial for energy production. Which of the following correctly describes the stages involved?</p>
+        <input type="radio" name="q5" value="a"> Glycolysis → Krebs Cycle → Electron Transport Chain<br>
+        <input type="radio" name="q5" value="b"> Krebs Cycle → Glycolysis → Electron Transport Chain<br>
+        <input type="radio" name="q5" value="c"> Electron Transport Chain → Glycolysis → Krebs Cycle<br>
+        <input type="radio" name="q5" value="d"> Glycolysis → Electron Transport Chain → Krebs Cycle<br>
+        <input type="radio" name="q5" value="e"> None of the above<br><br>
+
+        <p>6. A researcher discovers a mutation that affects the structure of the cytoskeleton. Which cellular processes might be primarily impacted?</p>
+        <input type="radio" name="q6" value="a"> Protein synthesis<br>
+        <input type="radio" name="q6" value="b"> Cell division and movement<br>
+        <input type="radio" name="q6" value="c"> Lipid metabolism<br>
+        <input type="radio" name="q6" value="d"> DNA replication<br>
+        <input type="radio" name="q6" value="e"> Hormone secretion<br><br>
+
+        <p>7. Which type of connective tissue is primarily responsible for energy storage?</p>
+        <input type="radio" name="q7" value="a"> Adipose tissue<br>
+        <input type="radio" name="q7" value="b"> Cartilage<br>
+        <input type="radio" name="q7" value="c"> Bone<br>
+        <input type="radio" name="q7" value="d"> Blood<br>
+        <input type="radio" name="q7" value="e"> Fibrous connective tissue<br><br>
+
+        <p>8. In the context of stem cells, which of the following statements is correct?</p>
+        <input type="radio" name="q8" value="a"> All stem cells are pluripotent<br>
+        <input type="radio" name="q8" value="b"> Embryonic stem cells can differentiate into any cell type<br>
+        <input type="radio" name="q8" value="c"> Adult stem cells have unlimited self-renewal capacity<br>
+        <input type="radio" name="q8" value="d"> Stem cells cannot be cultured in vitro<br>
+        <input type="radio" name="q8" value="e"> Stem cells are only found in embryos<br><br>
+
+        <p>9. A clinician is studying a patient with a history of chronic smoking. What type of epithelial change is likely observed in the respiratory tract?</p>
+        <input type="radio" name="q9" value="a"> Hyperplasia<br>
+        <input type="radio" name="q9" value="b"> Dysplasia<br>
+        <input type="radio" name="q9" value="c"> Metaplasia<br>
+        <input type="radio" name="q9" value="d"> Anaplasia<br>
+        <input type="radio" name="q9" value="e"> Neoplasia<br><br>
+
+        <p>10. During which phase of mitosis do chromosomes align at the equatorial plane of the cell?</p>
+        <input type="radio" name="q10" value="a"> Prophase<br>
+        <input type="radio" name="q10" value="b"> Metaphase<br>
+        <input type="radio" name="q10" value="c"> Anaphase<br>
+        <input type="radio" name="q10" value="d"> Telophase<br>
+        <input type="radio" name="q10" value="e"> Interphase<br><br>
+
+        <p>11. Which of the following correctly describes the phases of meiosis?</p>
+        <input type="radio" name="q11" value="a"> Two rounds of division resulting in four genetically identical cells<br>
+        <input type="radio" name="q11" value="b"> One round of division resulting in two genetically identical cells<br>
+        <input type="radio" name="q11" value="c"> Two rounds of division resulting in four genetically diverse cells<br>
+        <input type="radio" name="q11" value="d"> One round of division resulting in four genetically diverse cells<br>
+        <input type="radio" name="q11" value="e"> None of the above<br><br>
+
+        <p>12. A couple is undergoing genetic counseling due to a history of chromosomal disorders. Which meiotic error could lead to conditions such as Down syndrome?</p>
+        <input type="radio" name="q12" value="a"> Nondisjunction<br>
+        <input type="radio" name="q12" value="b"> Crossing over<br>
+        <input type="radio" name="q12" value="c"> Inversion<br>
+        <input type="radio" name="q12" value="d"> Deletion<br>
+        <input type="radio" name="q12" value="e"> Duplication<br><br>
+
+        <p>13. What is the primary role of the Golgi apparatus in the cell?</p>
+        <input type="radio" name="q13" value="a"> Energy production<br>
+        <input type="radio" name="q13" value="b"> Protein synthesis<br>
+        <input type="radio" name="q13" value="c"> Modifying and packaging proteins<br>
+        <input type="radio" name="q13" value="d"> DNA replication<br>
+        <input type="radio" name="q13" value="e"> Lipid synthesis<br><br>
+      
+      <p>14. In which stage of the cell cycle does DNA replication occur?</p>
+        <input type="radio" name="q14" value="A"> A) G1 phase<br>
+        <input type="radio" name="q14" value="B"> B) S phase<br>
+        <input type="radio" name="q14" value="C"> C) G2 phase<br>
+        <input type="radio" name="q14" value="D"> D) M phase<br>
+        <input type="radio" name="q14" value="E"> E) Cytokinesis<br>
+
+        <p>15. A patient diagnosed with hyperlipidemia is advised to change their diet. What is a primary dietary recommendation?</p>
+        <input type="radio" name="q15" value="A"> A) Increase saturated fats<br>
+        <input type="radio" name="q15" value="B"> B) Increase fiber intake<br>
+        <input type="radio" name="q15" value="C"> C) Decrease protein intake<br>
+        <input type="radio" name="q15" value="D"> D) Increase sugar consumption<br>
+        <input type="radio" name="q15" value="E"> E) Decrease hydration<br>
+
+        <p>16. Which of the following is NOT a characteristic of malignant tumors?</p>
+        <input type="radio" name="q16" value="A"> A) Invasion of surrounding tissues<br>
+        <input type="radio" name="q16" value="B"> B) High mitotic index<br>
+        <input type="radio" name="q16" value="C"> C) Well-defined borders<br>
+        <input type="radio" name="q16" value="D"> D) Ability to metastasize<br>
+        <input type="radio" name="q16" value="E"> E) Irregular shape<br>
+
+        <p>17. A researcher is studying the effects of ionizing radiation on cell division. Which phase of the cell cycle would be most affected?</p>
+        <input type="radio" name="q17" value="A"> A) G1 phase<br>
+        <input type="radio" name="q17" value="B"> B) S phase<br>
+        <input type="radio" name="q17" value="C"> C) G2 phase<br>
+        <input type="radio" name="q17" value="D"> D) M phase<br>
+        <input type="radio" name="q17" value="E"> E) Interphase<br>
+
+        <p>18. What is the primary function of cilia in epithelial cells?</p>
+        <input type="radio" name="q18" value="A"> A) Absorption<br>
+        <input type="radio" name="q18" value="B"> B) Secretion<br>
+        <input type="radio" name="q18" value="C"> C) Movement of substances across the cell surface<br>
+        <input type="radio" name="q18" value="D"> D) Cell signaling<br>
+        <input type="radio" name="q18" value="E"> E) Structural support<br>
+
+        <p>19. A patient has been diagnosed with a condition affecting their connective tissue. Which of the following disorders is characterized by the breakdown of collagen?</p>
+        <input type="radio" name="q19" value="A"> A) Osteoporosis<br>
+        <input type="radio" name="q19" value="B"> B) Ehlers-Danlos syndrome<br>
+        <input type="radio" name="q19" value="C"> C) Marfan syndrome<br>
+        <input type="radio" name="q19" value="D"> D) Scurvy<br>
+        <input type="radio" name="q19" value="E"> E) Rheumatoid arthritis<br>
+
+        <p>20. In the context of cell signaling, which of the following molecules serves as a secondary messenger?</p>
+        <input type="radio" name="q20" value="A"> A) cAMP<br>
+        <input type="radio" name="q20" value="B"> B) ATP<br>
+        <input type="radio" name="q20" value="C"> C) DNA<br>
+        <input type="radio" name="q20" value="D"> D) RNA<br>
+        <input type="radio" name="q20" value="E"> E) Protein<br>
+
+        <p>21. A patient presents with signs of muscle weakness and has elevated creatine kinase levels. This may indicate damage to which type of tissue?</p>
+        <input type="radio" name="q21" value="A"> A) Epithelial tissue<br>
+        <input type="radio" name="q21" value="B"> B) Connective tissue<br>
+        <input type="radio" name="q21" value="C"> C) Nervous tissue<br>
+        <input type="radio" name="q21" value="D"> D) Muscle tissue<br>
+        <input type="radio" name="q21" value="E"> E) Adipose tissue<br>
+
+        <p>22. Which of the following is a function of the smooth endoplasmic reticulum?</p>
+        <input type="radio" name="q22" value="A"> A) Protein synthesis<br>
+        <input type="radio" name="q22" value="B"> B) Lipid synthesis<br>
+        <input type="radio" name="q22" value="C"> C) DNA replication<br>
+        <input type="radio" name="q22" value="D"> D) Energy production<br>
+        <input type="radio" name="q22" value="E"> E) Packaging proteins<br>
+
+        <p>23. During which stage of meiosis does crossing over occur?</p>
+        <input type="radio" name="q23" value="A"> A) Prophase I<br>
+        <input type="radio" name="q23" value="B"> B) Metaphase I<br>
+        <input type="radio" name="q23" value="C"> C) Anaphase I<br>
+        <input type="radio" name="q23" value="D"> D) Telophase I<br>
+        <input type="radio" name="q23" value="E"> E) Prophase II<br>
+
+        <p>24. A patient is found to have a mutation affecting the p53 protein. Which of the following processes is most likely disrupted?</p>
+        <input type="radio" name="q24" value="A"> A) Apoptosis<br>
+        <input type="radio" name="q24" value="B"> B) Mitosis<br>
+        <input type="radio" name="q24" value="C"> C) DNA replication<br>
+        <input type="radio" name="q24" value="D"> D) Protein synthesis<br>
+        <input type="radio" name="q24" value="E"> E) Signal transduction<br>
+
+        <p>25. Which type of epithelial tissue is best suited for diffusion and filtration?</p>
+        <input type="radio" name="q25" value="A"> A) Simple squamous<br>
+        <input type="radio" name="q25" value="B"> B) Stratified squamous<br>
+        <input type="radio" name="q25" value="C"> C) Cuboidal<br>
+        <input type="radio" name="q25" value="D"> D) Columnar<br>
+        <input type="radio" name="q25" value="E"> E) Transitional<br>
+
+        <p>28. A patient with a family history of breast cancer undergoes genetic testing. Which gene is commonly associated with increased breast cancer risk?</p>
+        <input type="radio" name="q28" value="A"> A) BRCA1<br>
+        <input type="radio" name="q28" value="B"> B) p53<br>
+        <input type="radio" name="q28" value="C"> C) HER2<br>
+        <input type="radio" name="q28" value="D"> D) APC<br>
+        <input type="radio" name="q28" value="E"> E) RAS<br>
+
+      <p>29. What type of joint is characterized by a fluid-filled cavity?</p>
+        <input type="radio" name="q29" value="A"> A) Fibrous joint<br>
+        <input type="radio" name="q29" value="B"> B) Cartilaginous joint<br>
+        <input type="radio" name="q29" value="C"> C) Synovial joint<br>
+        <input type="radio" name="q29" value="D"> D) Fixed joint<br>
+        <input type="radio" name="q29" value="E"> E) Immovable joint<br>
+
+        <p>30. A researcher is studying the effects of insulin on glucose uptake in muscle cells. Which cellular mechanism is primarily involved?</p>
+        <input type="radio" name="q30" value="A"> A) Endocytosis<br>
+        <input type="radio" name="q30" value="B"> B) Exocytosis<br>
+        <input type="radio" name="q30" value="C"> C) Facilitated diffusion<br>
+        <input type="radio" name="q30" value="D"> D) Active transport<br>
+        <input type="radio" name="q30" value="E"> E) Osmosis<br>
+
+        <p>31. During which phase of the cell cycle does the cell prepare for mitosis?</p>
+        <input type="radio" name="q31" value="A"> A) G1 phase<br>
+        <input type="radio" name="q31" value="B"> B) S phase<br>
+        <input type="radio" name="q31" value="C"> C) G2 phase<br>
+        <input type="radio" name="q31" value="D"> D) M phase<br>
+        <input type="radio" name="q31" value="E"> E) Cytokinesis<br>
+
+        <p>32. A patient presents with symptoms of excessive thirst and urination. Which endocrine disorder might this suggest?</p>
+        <input type="radio" name="q32" value="A"> A) Hypothyroidism<br>
+        <input type="radio" name="q32" value="B"> B) Diabetes Mellitus<br>
+        <input type="radio" name="q32" value="C"> C) Addison's disease<br>
+        <input type="radio" name="q32" value="D"> D) Cushing's syndrome<br>
+        <input type="radio" name="q32" value="E"> E) Graves' disease<br>
+
+        <p>33. Which of the following is a hallmark of inflammation?</p>
+        <input type="radio" name="q33" value="A"> A) Vasodilation<br>
+        <input type="radio" name="q33" value="B"> B) Decreased blood flow<br>
+        <input type="radio" name="q33" value="C"> C) Increased pH<br>
+        <input type="radio" name="q33" value="D"> D) Decreased temperature<br>
+        <input type="radio" name="q33" value="E"> E) Tissue necrosis<br>
+
+        <p>34. A researcher is investigating the role of fibroblasts in wound healing. What is the primary function of fibroblasts?</p>
+        <input type="radio" name="q34" value="A"> A) Produce antibodies<br>
+        <input type="radio" name="q34" value="B"> B) Secrete collagen and extracellular matrix<br>
+        <input type="radio" name="q34" value="C"> C) Conduct nerve impulses<br>
+        <input type="radio" name="q34" value="D"> D) Contract muscle fibers<br>
+        <input type="radio" name="q34" value="E"> E) Absorb nutrients<br>
+
+        <p>35. Which process is responsible for the movement of water across a semi-permeable membrane?</p>
+        <input type="radio" name="q35" value="A"> A) Active transport<br>
+        <input type="radio" name="q35" value="B"> B) Facilitated diffusion<br>
+        <input type="radio" name="q35" value="C"> C) Osmosis<br>
+        <input type="radio" name="q35" value="D"> D) Endocytosis<br>
+        <input type="radio" name="q35" value="E"> E) Exocytosis<br>
+
+        <p>36. A patient with anemia is found to have a deficiency in vitamin B12. Which type of cell is primarily affected?</p>
+        <input type="radio" name="q36" value="A"> A) Red blood cells<br>
+        <input type="radio" name="q36" value="B"> B) Platelets<br>
+        <input type="radio" name="q36" value="C"> C) White blood cells<br>
+        <input type="radio" name="q36" value="D"> D) Plasma cells<br>
+        <input type="radio" name="q36" value="E"> E) Stem cells<br>
+
+        <p>37. In a genetic study, a researcher finds that a particular mutation leads to the overproduction of a growth factor. What is a potential consequence of this mutation?</p>
+        <input type="radio" name="q37" value="A"> A) Decreased cell proliferation<br>
+        <input type="radio" name="q37" value="B"> B) Increased apoptosis<br>
+        <input type="radio" name="q37" value="C"> C) Uncontrolled cell growth<br>
+        <input type="radio" name="q37" value="D"> D) Enhanced differentiation<br>
+        <input type="radio" name="q37" value="E"> E) Reduced inflammation<br>
+
+        <p>38. Which of the following is NOT a function of connective tissue?</p>
+        <input type="radio" name="q38" value="A"> A) Support<br>
+        <input type="radio" name="q38" value="B"> B) Binding and anchoring<br>
+        <input type="radio" name="q38" value="C"> C) Protection<br>
+        <input type="radio" name="q38" value="D"> D) Absorption<br>
+        <input type="radio" name="q38" value="E"> E) Storage<br>
+
+        <p>44. In the context of pathology, what does the term "neoplasia" refer to?</p>
+        <input type="radio" name="q44" value="A"> A) Inflammation<br>
+        <input type="radio" name="q44" value="B"> B) Tissue death<br>
+        <input type="radio" name="q44" value="C"> C) Abnormal tissue growth<br>
+        <input type="radio" name="q44" value="D"> D) Tissue repair<br>
+        <input type="radio" name="q44" value="E"> E) Normal tissue growth<br>
+
+       <p>45. Which organ is primarily responsible for storing urine?</p>
+        <input type="radio" name="q45" value="A"> A) Urinary bladder<br>
+        <input type="radio" name="q45" value="B"> B) Uterus<br>
+        <input type="radio" name="q45" value="C"> C) Arteries<br>
+        <input type="radio" name="q45" value="D"> D) Tongue<br>
+        <input type="radio" name="q45" value="E"> E) Heart<br>
+
+      <p>46. A clinical trial is testing a new drug that inhibits angiogenesis. What is the primary purpose of angiogenesis?</p>
+        <input type="radio" name="q46" value="A"> A) Formation of new blood vessels<br>
+        <input type="radio" name="q46" value="B"> B) Repair of damaged tissues<br>
+        <input type="radio" name="q46" value="C"> C) Regulation of inflammation<br>
+        <input type="radio" name="q46" value="D"> D) Tissue necrosis<br>
+        <input type="radio" name="q46" value="E"> E) Cell apoptosis<br>
+
+        <p>47. Which of the following is NOT a function of the lymphatic system?</p>
+        <input type="radio" name="q47" value="A"> A) Fluid balance<br>
+        <input type="radio" name="q47" value="B"> B) Absorption of dietary fats<br>
+        <input type="radio" name="q47" value="C"> C) Transportation of oxygen<br>
+        <input type="radio" name="q47" value="D"> D) Immune response<br>
+        <input type="radio" name="q47" value="E"> E) Removal of waste products<br>
+
+        <p>48. A patient presents with jaundice, which is indicative of liver dysfunction. Which of the following conditions might lead to jaundice?</p>
+        <input type="radio" name="q48" value="A"> A) Hepatitis<br>
+        <input type="radio" name="q48" value="B"> B) Diabetes Mellitus<br>
+        <input type="radio" name="q48" value="C"> C) Hypertension<br>
+        <input type="radio" name="q48" value="D"> D) Hyperlipidemia<br>
+        <input type="radio" name="q48" value="E"> E) Osteoporosis<br>
+
+        <p>49. Which of the following structures is primarily involved in the production of cerebrospinal fluid (CSF)?</p>
+        <input type="radio" name="q49" value="A"> A) Choroid plexus<br>
+        <input type="radio" name="q49" value="B"> B) Meninges<br>
+        <input type="radio" name="q49" value="C"> C) Dura mater<br>
+        <input type="radio" name="q49" value="D"> D) Arachnoid mater<br>
+        <input type="radio" name="q49" value="E"> E) Pia mater<br>
+
+        <p>50. A patient has a mutation in a gene that encodes for a receptor involved in glucose uptake. Which of the following conditions might result from this mutation?</p>
+        <input type="radio" name="q50" value="A"> A) Hypoglycemia<br>
+        <input type="radio" name="q50" value="B"> B) Diabetes Mellitus<br>
+        <input type="radio" name="q50" value="C"> C) Adrenal insufficiency<br>
+        <input type="radio" name="q50" value="D"> D) Hypercalcemia<br>
+        <input type="radio" name="q50" value="E"> E) Hypoparathyroidism<br>
+
+        <p>51. The following organs contain smooth muscles EXCEPT:</p>
+        <input type="radio" name="q51" value="A"> A) Urinary bladder<br>
+        <input type="radio" name="q51" value="B"> B) Uterus<br>
+        <input type="radio" name="q51" value="C"> C) Arteries<br>
+        <input type="radio" name="q51" value="D"> D) Tongue<br>
+        <input type="radio" name="q51" value="E"> E) Heart<br>
+
+        <p>52. In tissue processing, what step normally follows tissue fixation?</p>
+        <input type="radio" name="q52" value="A"> A) Dehydration<br>
+        <input type="radio" name="q52" value="B"> B) Sectioning<br>
+        <input type="radio" name="q52" value="C"> C) Embedding<br>
+        <input type="radio" name="q52" value="D"> D) Clearing<br>
+        <input type="radio" name="q52" value="E"> E) Staining<br>
+
+        <p>53. Vitreous humor of the eye is formed of:</p>
+        <input type="radio" name="q53" value="A"> A) Brown adipose CT<br>
+        <input type="radio" name="q53" value="B"> B) Irregular white fibrous CT<br>
+        <input type="radio" name="q53" value="C"> C) Yellow elastic CT<br>
+        <input type="radio" name="q53" value="D"> D) Reticular CT<br>
+        <input type="radio" name="q53" value="E"> E) Mucoid CT<br>
+
+        <p>54. What type of cell is rich in lysosomes?</p>
+        <input type="radio" name="q54" value="A"> A) Macrophages<br>
+        <input type="radio" name="q54" value="B"> B) Leukocytes<br>
+        <input type="radio" name="q54" value="C"> C) Fibroblasts<br>
+        <input type="radio" name="q54" value="D"> D) Mast cells<br>
+        <input type="radio" name="q54" value="E"> E) Plasma cells<br>
+
+        <p>55. Whereas meiosis I is a reductional division, meiosis II is considered an equational division because of:</p>
+        <input type="radio" name="q55" value="A"> A) Disjunction of chromosomes<br>
+        <input type="radio" name="q55" value="B"> B) Separation of chromatids<br>
+        <input type="radio" name="q55" value="C"> C) Separation of chromosomes<br>
+        <input type="radio" name="q55" value="D"> D) Pairing of chromosomes<br>
+        <input type="radio" name="q55" value="E"> E) Crossing over chromatids<br>
+
+        <p>56. Myelin-forming cells of the central nervous system are:</p>
+        <input type="radio" name="q56" value="A"> A) Astrocytes<br>
+        <input type="radio" name="q56" value="B"> B) Schwann cells<br>
+        <input type="radio" name="q56" value="C"> C) Satellite cells<br>
+        <input type="radio" name="q56" value="D"> D) Microglia<br>
+        <input type="radio" name="q56" value="E"> E) Oligodendrocytes<br>
+
+        <p>57. The evolutionary advantage of meiosis can be best explained by:</p>
+        <input type="radio" name="q57" value="A"> A) Asexual reproduction of the species<br>
+        <input type="radio" name="q57" value="B"> B) Genetic recombination in the population<br>
+        <input type="radio" name="q57" value="C"> C) Vertical transmission of the same genetic system<br>
+        <input type="radio" name="q57" value="D"> D) Absence of genetic variability in the population<br>
+        <input type="radio" name="q57" value="E"> E) Maintenance of genetic similarity<br>
+
+        <p>58. What is the approximate thickness of microtome-sectioned tissue samples for routine histology staining?</p>
+        <input type="radio" name="q58" value="A"> A) 500 µm<br>
+        <input type="radio" name="q58" value="B"> B) 50 µm<br>
+        <input type="radio" name="q58" value="C"> C) 10 µm<br>
+        <input type="radio" name="q58" value="D"> D) 100 µm<br>
+        <input type="radio" name="q58" value="E"> E) 1 µm<br>
+
+        <p>59. DNA damage checkpoints are found in all phases except:</p>
+        <input type="radio" name="q59" value="A"> A) S phase<br>
+        <input type="radio" name="q59" value="B"> B) G2 phase<br>
+        <input type="radio" name="q59" value="C"> C) G0 phase<br>
+        <input type="radio" name="q59" value="D"> D) G1 phase<br>
+        <input type="radio" name="q59" value="E"> E) M phase<br>
+      
+      <p>60. Which type of muscle tissue is made of trachealis muscle?</p>
+        <input type="radio" name="q60" value="A"> A) Striated muscle<br>
+        <input type="radio" name="q60" value="B"> B) Smooth muscle<br>
+        <input type="radio" name="q60" value="C"> C) Skeletal muscle<br>
+        <input type="radio" name="q60" value="D"> D) Myoepithelium<br>
+        <input type="radio" name="q60" value="E"> E) Smooth and striated muscle<br>
+
+        <p>61. In tissue processing, what step normally follows after tissue dehydration?</p>
+        <input type="radio" name="q61" value="A"> A) Sectioning<br>
+        <input type="radio" name="q61" value="B"> B) Dehydration<br>
+        <input type="radio" name="q61" value="C"> C) Staining<br>
+        <input type="radio" name="q61" value="D"> D) Embedding<br>
+        <input type="radio" name="q61" value="E"> E) Clearing<br>
+
+        <p>62. A section in the tendon shows all the following features except:</p>
+        <input type="radio" name="q62" value="A"> A) Minimal intercellular substance<br>
+        <input type="radio" name="q62" value="B"> B) Many macrophages and mast cells<br>
+        <input type="radio" name="q62" value="C"> C) Regular white fibrous connective tissue<br>
+        <input type="radio" name="q62" value="D"> D) Rows of fibroblasts between collagen bundles<br>
+        <input type="radio" name="q62" value="E"> E) Parallel collagen bundles<br>
+
+        <p>63. Down syndrome is mainly caused by which of the following?</p>
+        <input type="radio" name="q63" value="A"> A) Trisomy 21<br>
+        <input type="radio" name="q63" value="B"> B) Tetrasomy 22<br>
+        <input type="radio" name="q63" value="C"> C) Trisomy 22<br>
+        <input type="radio" name="q63" value="D"> D) Tetrasomy 21<br>
+        <input type="radio" name="q63" value="E"> E) Trisomy 18<br>
+
+        <p>64. The cells specialized to protect underlying tissues from the hypertonic and potentially cytotoxic effects of urine are:</p>
+        <input type="radio" name="q64" value="A"> A) Non-keratinized cells<br>
+        <input type="radio" name="q64" value="B"> B) Keratinized cells<br>
+        <input type="radio" name="q64" value="C"> C) Stem cells<br>
+        <input type="radio" name="q64" value="D"> D) Basal cells<br>
+        <input type="radio" name="q64" value="E"> E) Umbrella cells<br>
+
+        <p>65. Marfan syndrome is a genetic disorder of the connective tissue characterized by hyperelastic syndrome that affects which component of the connective tissue?</p>
+        <input type="radio" name="q65" value="A"> A) Elastic fibers<br>
+        <input type="radio" name="q65" value="B"> B) Collagen fibers<br>
+        <input type="radio" name="q65" value="C"> C) Fibrillin protein<br>
+        <input type="radio" name="q65" value="D"> D) Reticular fibers<br>
+        <input type="radio" name="q65" value="E"> E) Protein Elastin<br>
+
+        <p>66. The most numerous glial cells of the central nervous system are:</p>
+        <input type="radio" name="q66" value="A"> A) Astrocytes<br>
+        <input type="radio" name="q66" value="B"> B) Microglia<br>
+        <input type="radio" name="q66" value="C"> C) Oligodendrocytes<br>
+        <input type="radio" name="q66" value="D"> D) Schwann cells<br>
+        <input type="radio" name="q66" value="E"> E) Ependymal cells<br>
+
+        <p>67. Vital stain is used to detect the following cell:</p>
+        <input type="radio" name="q67" value="A"> A) Fibroblasts<br>
+        <input type="radio" name="q67" value="B"> B) Macrophage cell<br>
+        <input type="radio" name="q67" value="C"> C) Plasma cell<br>
+        <input type="radio" name="q67" value="D"> D) Reticular cell<br>
+        <input type="radio" name="q67" value="E"> E) Mast cells<br>
+
+        <p>68. A patient suspected of melanoma was indicated for a biopsy for microscopic examination. The tissue was excised and immediately fixed in:</p>
+        <input type="radio" name="q68" value="A"> A) 10% methylated spirit<br>
+        <input type="radio" name="q68" value="B"> B) 50% ethanol<br>
+        <input type="radio" name="q68" value="C"> C) 50% formaldehyde<br>
+        <input type="radio" name="q68" value="D"> D) 10% formaldehyde<br>
+        <input type="radio" name="q68" value="E"> E) 10% ethanol<br>
+
+        <p>69. Synapsis takes place between:</p>
+        <input type="radio" name="q69" value="A"> A) Spindle fiber and mRNA<br>
+        <input type="radio" name="q69" value="B"> B) Female and male gametes<br>
+        <input type="radio" name="q69" value="C"> C) mRNA and ribosomes<br>
+        <input type="radio" name="q69" value="D"> D) Homologous chromosomes<br>
+        <input type="radio" name="q69" value="E"> E) Spindle fiber and centromere<br>
+
+        <p>70. Which structure is not present in bronchiole?</p>
+        <input type="radio" name="q70" value="A"> A) Vessels<br>
+        <input type="radio" name="q70" value="B"> B) Hyaline cartilage<br>
+        <input type="radio" name="q70" value="C"> C) Pseudostratified columnar epithelium<br>
+        <input type="radio" name="q70" value="D"> D) Elastic fibers<br>
+        <input type="radio" name="q70" value="E"> E) Smooth muscle<br>
+
+        <p>71. Which basic histological tissue is primarily affected in vitamin C deficiency?</p>
+        <input type="radio" name="q71" value="A"> A) Connective tissue proper<br>
+        <input type="radio" name="q71" value="B"> B) Hyaline cartilage<br>
+        <input type="radio" name="q71" value="C"> C) Simple squamous<br>
+        <input type="radio" name="q71" value="D"> D) Osteoid<br>
+        <input type="radio" name="q71" value="E"> E) Osteon<br>
+
+        <p>72. Microfilaments are composed of which protein?</p>
+        <input type="radio" name="q72" value="A"> A) Fibrillin<br>
+        <input type="radio" name="q72" value="B"> B) Chitin<br>
+        <input type="radio" name="q72" value="C"> C) Actin<br>
+        <input type="radio" name="q72" value="D"> D) Myosin<br>
+        <input type="radio" name="q72" value="E"> E) Tubulin<br>
+
+      <p>73. Which epithelium covers the main part of the vocal fold (true vocal fold)?</p>
+        <input type="radio" name="q73" value="A"> A) Simple squamous keratinizing<br>
+        <input type="radio" name="q73" value="B"> B) Stratified squamous keratinizing<br>
+        <input type="radio" name="q73" value="C"> C) Simple squamous non-keratinizing<br>
+        <input type="radio" name="q73" value="D"> D) Simple squamous ciliated<br>
+        <input type="radio" name="q73" value="E"> E) Stratified squamous non-keratinizing<br>
+
+        <p>74. Which of the following cells line the ventricles of the human brain?</p>
+        <input type="radio" name="q74" value="A"> A) Microglia<br>
+        <input type="radio" name="q74" value="B"> B) Ependymal cells<br>
+        <input type="radio" name="q74" value="C"> C) Oligodendrocytes<br>
+        <input type="radio" name="q74" value="D"> D) Thrombocytes<br>
+        <input type="radio" name="q74" value="E"> E) Astrocytes<br>
+
+        <p>75. The longest stage in the cell cycle is:</p>
+        <input type="radio" name="q75" value="A"> A) Telophase<br>
+        <input type="radio" name="q75" value="B"> B) Anaphase<br>
+        <input type="radio" name="q75" value="C"> C) None of the above<br>
+        <input type="radio" name="q75" value="D"> D) Metaphase<br>
+        <input type="radio" name="q75" value="E"> E) Interphase<br>
+
+        <p>76. Lysosomes are produced by which of the following cell organelles?</p>
+        <input type="radio" name="q76" value="A"> A) Mitochondria<br>
+        <input type="radio" name="q76" value="B"> B) Endoplasmic Reticulum<br>
+        <input type="radio" name="q76" value="C"> C) Ribosomes<br>
+        <input type="radio" name="q76" value="D"> D) DNA<br>
+        <input type="radio" name="q76" value="E"> E) Golgi Complex<br>
+
+        <p>77. The characteristic features of skeletal muscles include all of the following, EXCEPT that they:</p>
+        <input type="radio" name="q77" value="A"> A) Have a central nucleus<br>
+        <input type="radio" name="q77" value="B"> B) Are anchored by tendons to the bones<br>
+        <input type="radio" name="q77" value="C"> C) Have striations<br>
+        <input type="radio" name="q77" value="D"> D) Contain multiple nuclei<br>
+        <input type="radio" name="q77" value="E"> E) Contain elongated cells<br>
+
+        <p>78. Which epithelial cell surface specialization is used to move mucus and particles along the surface?</p>
+        <input type="radio" name="q78" value="A"> A) Desmosomes<br>
+        <input type="radio" name="q78" value="B"> B) Cilia<br>
+        <input type="radio" name="q78" value="C"> C) Stereocilia<br>
+        <input type="radio" name="q78" value="D"> D) Microvilli<br>
+        <input type="radio" name="q78" value="E"> E) Villi<br>
+
+        <p>79. What is the function of elastic tissue?</p>
+        <input type="radio" name="q79" value="A"> A) Stretchable<br>
+        <input type="radio" name="q79" value="B"> B) Resistant to stretch<br>
+        <input type="radio" name="q79" value="C"> C) Support organs<br>
+        <input type="radio" name="q79" value="D"> D) Structural support<br>
+        <input type="radio" name="q79" value="E"> E) Defense role<br>
+
+        <p>80. Which of the following cells are the specialized immune cells of the central nervous system?</p>
+        <input type="radio" name="q80" value="A"> A) Schwann cells<br>
+        <input type="radio" name="q80" value="B"> B) Satellite cells<br>
+        <input type="radio" name="q80" value="C"> C) Oligodendrocytes<br>
+        <input type="radio" name="q80" value="D"> D) Microglia<br>
+        <input type="radio" name="q80" value="E"> E) Astrocytes<br>
+
+        <p>81. Regarding fibroblasts, the following are true except:</p>
+        <input type="radio" name="q81" value="A"> A) Produce collagen fibers<br>
+        <input type="radio" name="q81" value="B"> B) Are the main cell type in dense connective tissue<br>
+        <input type="radio" name="q81" value="C"> C) Are active cells<br>
+        <input type="radio" name="q81" value="D"> D) Produce extracellular matrix<br>
+        <input type="radio" name="q81" value="E"> E) Cannot undergo cell division<br>
+
+        <p>82. Cardiac muscles are found in which organ?</p>
+        <input type="radio" name="q82" value="A"> A) Small intestine<br>
+        <input type="radio" name="q82" value="B"> B) Urinary bladder<br>
+        <input type="radio" name="q82" value="C"> C) Uterus<br>
+        <input type="radio" name="q82" value="D"> D) Large intestine<br>
+        <input type="radio" name="q82" value="E"> E) Heart<br>
+
+        <p>83. RNA is present in which of the following cell organelles?</p>
+        <input type="radio" name="q83" value="A"> A) Ribosome<br>
+        <input type="radio" name="q83" value="B"> B) Nucleus<br>
+        <input type="radio" name="q83" value="C"> C) Mitochondria<br>
+        <input type="radio" name="q83" value="D"> D) Golgi complex<br>
+        <input type="radio" name="q83" value="E"> E) Cytoplasm<br>
+
+        <p>84. Which type of epithelium is usually resorptive?</p>
+        <input type="radio" name="q84" value="A"> A) Pseudostratified columnar epithelium<br>
+        <input type="radio" name="q84" value="B"> B) Stratified columnar epithelium<br>
+        <input type="radio" name="q84" value="C"> C) Simple columnar epithelium<br>
+        <input type="radio" name="q84" value="D"> D) Simple squamous epithelium<br>
+        <input type="radio" name="q84" value="E"> E) Simple cuboidal epithelium<br>
+
+        <p>85. In which part of the respiratory system do we have sebaceous glands?</p>
+        <input type="radio" name="q85" value="A"> A) Bronchi<br>
+        <input type="radio" name="q85" value="B"> B) Trachea<br>
+        <input type="radio" name="q85" value="C"> C) Bronchiole<br>
+        <input type="radio" name="q85" value="D"> D) Larynx<br>
+        <input type="radio" name="q85" value="E"> E) Nostrils<br>
+      
+      <p>86. The articular surface of joints:</p>
+        <input type="radio" name="q86" value="A"> A) Gets its nutrition from periosteum<br>
+        <input type="radio" name="q86" value="B"> B) Is formed of hyaline cartilage<br>
+        <input type="radio" name="q86" value="C"> C) Gets its nutrition from perichondrium<br>
+        <input type="radio" name="q86" value="D"> D) Is rich in elastic fibers<br>
+        <input type="radio" name="q86" value="E"> E) Is rich in collagen type I<br>
+
+        <p>87. Name the event wherein the paternal and maternal chromosomes change their material with each other in cell division:</p>
+        <input type="radio" name="q87" value="A"> A) Trivalent forming<br>
+        <input type="radio" name="q87" value="B"> B) Synapsis<br>
+        <input type="radio" name="q87" value="C"> C) Dyad forming<br>
+        <input type="radio" name="q87" value="D"> D) Crossing over<br>
+        <input type="radio" name="q87" value="E"> E) Bivalent forming<br>
+
+        <p>88. DNA in a cell is copied during:</p>
+        <input type="radio" name="q88" value="A"> A) G2 phase<br>
+        <input type="radio" name="q88" value="B"> B) Cytokinesis<br>
+        <input type="radio" name="q88" value="C"> C) S phase<br>
+        <input type="radio" name="q88" value="D"> D) G1 phase<br>
+        <input type="radio" name="q88" value="E"> E) M phase<br>
+
+        <p>89. In ordinary light microscopic study of H/E slides, the cell type is chiefly determined based on:</p>
+        <input type="radio" name="q89" value="A"> A) Amount of eosin intake<br>
+        <input type="radio" name="q89" value="B"> B) Type of organelles in cytoplasm<br>
+        <input type="radio" name="q89" value="C"> C) Cytoplasmic shape<br>
+        <input type="radio" name="q89" value="D"> D) Nuclear shape<br>
+        <input type="radio" name="q89" value="E"> E) Amount of hematoxylin intake<br>
+
+        <p>90. Which structure inside the cell is responsible for contractility of myoepithelial cells?</p>
+        <input type="radio" name="q90" value="A"> A) Network composed of actin filaments<br>
+        <input type="radio" name="q90" value="B"> B) Network composed of microtubules<br>
+        <input type="radio" name="q90" value="C"> C) Network composed of cytokeratins<br>
+        <input type="radio" name="q90" value="D"> D) Network composed of intermediate filaments<br>
+        <input type="radio" name="q90" value="E"> E) Network composed of microfilaments<br>
+
+        <p>91. The perimysium is a special connective sheath that covers:</p>
+        <input type="radio" name="q91" value="A"> A) A nerve fiber<br>
+        <input type="radio" name="q91" value="B"> B) Individual myofibers<br>
+        <input type="radio" name="q91" value="C"> C) A bundle of muscle fibers<br>
+        <input type="radio" name="q91" value="D"> D) An osteon tissue<br>
+        <input type="radio" name="q91" value="E"> E) An entire muscle<br>
+
+        <p>92. Which type of stem cells is found in small quantities in various tissues and organs of the body?</p>
+        <input type="radio" name="q92" value="A"> A) Embryonic stem cells<br>
+        <input type="radio" name="q92" value="B"> B) Induced pluripotent stem cells<br>
+        <input type="radio" name="q92" value="C"> C) Adult stem cells<br>
+        <input type="radio" name="q92" value="D"> D) Umbilical cord stem cells<br>
+        <input type="radio" name="q92" value="E"> E) Pluripotent stem cells<br>
+
+        <p>93. Which of the following cells do not usually divide but can be induced to divide?</p>
+        <input type="radio" name="q93" value="A"> A) Hair cells<br>
+        <input type="radio" name="q93" value="B"> B) Liver cells<br>
+        <input type="radio" name="q93" value="C"> C) Hair follicles<br>
+        <input type="radio" name="q93" value="D"> D) Neurons<br>
+        <input type="radio" name="q93" value="E"> E) Red blood cells<br>
+
+        <p>94. One of the following is true about fibroblasts:</p>
+        <input type="radio" name="q94" value="A"> A) Secrete collagen and elastic fibers<br>
+        <input type="radio" name="q94" value="B"> B) Line blood vessels and capillaries<br>
+        <input type="radio" name="q94" value="C"> C) Responsible for storage of fat<br>
+        <input type="radio" name="q94" value="D"> D) Large cubical cells<br>
+        <input type="radio" name="q94" value="E"> E) Can differentiate to endothelial cells and smooth muscle cells<br>
+
+        <p>95. Which organelle produces protein for export?</p>
+        <input type="radio" name="q95" value="A"> A) Rough endoplasmic reticulum<br>
+        <input type="radio" name="q95" value="B"> B) Lysosome<br>
+        <input type="radio" name="q95" value="C"> C) Golgi apparatus<br>
+        <input type="radio" name="q95" value="D"> D) Smooth endoplasmic reticulum<br>
+        <input type="radio" name="q95" value="E"> E) Mitochondria<br>
+
+        <p>96. What is a dust cell?</p>
+        <input type="radio" name="q96" value="A"> A) Alveolar neutrophil<br>
+        <input type="radio" name="q96" value="B"> B) Laryngeal macrophage<br>
+        <input type="radio" name="q96" value="C"> C) Alveolar macrophage<br>
+        <input type="radio" name="q96" value="D"> D) Pharyngeal macrophage<br>
+        <input type="radio" name="q96" value="E"> E) Laryngeal neutrophil<br>
+
+        <p>97. What is the main function of type II pneumocyte?</p>
+        <input type="radio" name="q97" value="A"> A) It produces a surfactant<br>
+        <input type="radio" name="q97" value="B"> B) It is a part of the neuroendocrine system<br>
+        <input type="radio" name="q97" value="C"> C) It acts as a guardian against microbes<br>
+        <input type="radio" name="q97" value="D"> D) It is a site of diffusion of gases<br>
+        <input type="radio" name="q97" value="E"> E) It produces mucus<br>
+
+        <p>98. Which of the following are striated muscles?</p>
+        <input type="radio" name="q98" value="A"> A) Skeletal and cardiac<br>
+        <input type="radio" name="q98" value="B"> B) Smooth and skeletal<br>
+        <input type="radio" name="q98" value="C"> C) Myocardium<br>
+        <input type="radio" name="q98" value="D"> D) Myometrium<br>
+        <input type="radio" name="q98" value="E"> E) Cardiac and smooth<br>
+
+        <p>99. Which cell is responsible for heat insulation?</p>
+        <input type="radio" name="q99" value="A"> A) Adipose tissue<br>
+        <input type="radio" name="q99" value="B"> B) Muscle tissue<br>
+        <input type="radio" name="q99" value="C"> C) Elastic tissue<br>
+        <input type="radio" name="q99" value="D"> D) Dense collagenous connective tissue<br>
+        <input type="radio" name="q99" value="E"> E) Reticular tissue<br>
+
+        <p>100. What is the function of mast cells?</p>
+        <input type="radio" name="q100" value="A"> A) Maintain temperature<br>
+        <input type="radio" name="q100" value="B"> B) Type 1 hypersensitivity reaction<br>
+        <input type="radio" name="q100" value="C"> C) Secrete heparin & histamine<br>
+        <input type="radio" name="q100" value="D"> D) Secrete antibodies<br>
+        <input type="radio" name="q100" value="E"> E) Connect organs<br>
+
+ <br>
+ <button type="submit">Submit Quiz</button>
+    </form>
+
+    <h2>Your Submission</h2>
+    <div id="result"></div>
+
+    <div class="footer-text">Presented to you by a man from the future</div>
+
+</body>
+</html>

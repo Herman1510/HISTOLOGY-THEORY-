@@ -16,34 +16,77 @@ const correctAnswers = {
 };
 
 // Handle quiz submission
-document.getElementById("quizForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent page refresh
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("quizForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent page refresh
 
-    // Calculate time spent
-    const endTime = Date.now();
-    const timeSpent = ((endTime - startTime) / 1000).toFixed(2);
+        // Calculate time spent
+        const endTime = Date.now();
+        const timeSpent = ((endTime - startTime) / 1000).toFixed(2);
 
-    let studentName = document.getElementById("studentName").value.trim();
-    if (!studentName) {
-        alert("Please enter your name.");
-        return;
-    }
-
-    let answers = {};
-    let score = 0;
-    let totalQuestions = Object.keys(correctAnswers).length;
-
-    // Loop through questions
-    Object.keys(correctAnswers).forEach((key) => {
-        let selectedOption = document.querySelector(`input[name="${key}"]:checked`);
-        if (selectedOption) {
-            answers[key] = selectedOption.value;
-            if (selectedOption.value.toUpperCase() === correctAnswers[key].toUpperCase()) {
-                score++;
-            }
+        let studentName = document.getElementById("studentName").value.trim();
+        if (!studentName) {
+            alert("Please enter your name.");
+            return;
         }
-    });
 
-    let percentage = ((score / totalQuestions) * 100).toFixed(2);
-    let grade = percentage >= 80 ? "A" : percentage >= 70 ? "B" : percentage >= 60 ? "C" : percentage >= 50 ? "D" : "F";
-    let
+        let answers = {};
+        let score = 0;
+        let totalQuestions = Object.keys(correctAnswers).length;
+
+        // Loop through questions
+        Object.keys(correctAnswers).forEach((key) => {
+            let selectedOption = document.querySelector(`input[name="${key}"]:checked`);
+            if (selectedOption) {
+                answers[key] = selectedOption.value;
+                if (selectedOption.value.toUpperCase() === correctAnswers[key].toUpperCase()) {
+                    score++;
+                }
+            }
+        });
+
+        let percentage = ((score / totalQuestions) * 100).toFixed(2);
+        let grade = percentage >= 80 ? "A" : percentage >= 70 ? "B" : percentage >= 60 ? "C" : percentage >= 50 ? "D" : "F";
+        let comments =
+            grade === "A" ? "Excellent performance!" :
+            grade === "B" ? "Good job, keep it up!" :
+            grade === "C" ? "Fair effort, but there's room for improvement." :
+            grade === "D" ? "You passed, but try to work harder." :
+            "Needs improvement, keep studying!";
+
+        // Display results
+        let resultHTML = `
+            <h2>Quiz Results</h2>
+            <p><strong>Name:</strong> ${studentName}</p>
+            <p><strong>Score:</strong> ${score} / ${totalQuestions} (${percentage}%)</p>
+            <p><strong>Grade:</strong> ${grade}</p>
+            <p><strong>Comments:</strong> ${comments}</p>
+            <p><strong>Time Spent:</strong> ${timeSpent} seconds</p>
+            <h3>Correct Answers</h3>
+            <table border="1">
+                <tr>
+                    <th>Question</th>
+                    <th>Your Answer</th>
+                    <th>Correct Answer</th>
+                </tr>`;
+
+        Object.keys(correctAnswers).forEach((key) => {
+            let userAnswer = answers[key] ? answers[key].toUpperCase() : "Not Answered";
+            let correctAnswer = correctAnswers[key];
+            let color = userAnswer === correctAnswer ? "green" : "red";
+            resultHTML += `
+                <tr>
+                    <td>${key.toUpperCase()}</td>
+                    <td style="color:${color}">${userAnswer}</td>
+                    <td>${correctAnswer}</td>
+                </tr>`;
+        });
+
+        resultHTML += `</table>
+            <p style="font-size: small; font-style: italic;">Presented to you by a man from the future</p>`;
+
+        // Display results in the page
+        document.getElementById("quizResults").innerHTML = resultHTML;
+        document.getElementById("quizResults").scrollIntoView({ behavior: "smooth" });
+    });
+});
